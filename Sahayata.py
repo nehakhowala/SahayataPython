@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from MessagingService import push_notifications
+from AreaClassifierService import takeLatLongReturnCrimeNumbers, classifyArea
 
 app = Flask(__name__)
 
@@ -8,6 +9,12 @@ app = Flask(__name__)
 def launcher():
     response = push_notifications()
     return response
+
+@app.route('/spitCrimeNumber/<float:lat>/<float:longi>')
+def getCrimes(lat,longi):
+
+	z = takeLatLongReturnCrimeNumbers(lat,longi)
+    	return str(z)
 
 
 # Run the app
