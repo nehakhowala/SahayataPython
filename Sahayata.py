@@ -22,6 +22,12 @@ def getCrimes(lat,longi):
 	z = takeLatLongReturnCrimeNumbers(lat,longi)
     	return str(z)
 
+@app.route('/classify/<float:lat>/<float:longi>')
+def sendinfo(lat,longi):
+
+	z = takeLatLongReturnCrimeNumbers(lat,longi)
+	y = classifyArea(z)
+    	return str(y)
 
 # Run the app
 if __name__ == '__main__':
