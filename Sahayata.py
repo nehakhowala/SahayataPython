@@ -4,6 +4,12 @@ from AreaClassifierService import takeLatLongReturnCrimeNumbers, classifyArea
 
 app = Flask(__name__)
 
+from werkzeug.routing import FloatConverter as BaseFloatConverter
+
+class FloatConverter(BaseFloatConverter):
+    regex = r'-?\d+(\.\d+)?'
+
+app.url_map.converters['float'] = FloatConverter
 
 @app.route('/')
 def launcher():
