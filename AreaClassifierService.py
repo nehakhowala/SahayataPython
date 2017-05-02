@@ -5,3 +5,7 @@ import sys
 
 crimeData = pd.read_csv('SFCrime.csv')
 
+crimeCountByLatLong = crimeData.round({
+    'X': 3,
+    'Y': 3
+}).groupby(['X', 'Y']).size().reset_index(name = 'crimeNumbers')
